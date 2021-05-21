@@ -1,1 +1,1 @@
-# lnaguage-thesis-server
+# language-thesis-server
