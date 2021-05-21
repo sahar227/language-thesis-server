@@ -25,7 +25,7 @@ const dbSchema = new mongoose.Schema({
   },
 });
 
-const WordPhase1 = mongoose.model("wordsForPhase1", dbSchema);
+const wordPhase1 = mongoose.model("wordsForPhase1", dbSchema);
 
 const validationSchema = {
   word: Joi.string().min(1).max(25).required(),
@@ -36,5 +36,5 @@ function validate(word) {
   return Joi.validate(word, validationSchema);
 }
 
-module.exports.WordPhase1 = WordPhase1;
+module.exports.wordPhase1 = wordPhase1;
 module.exports.validate = validate;
