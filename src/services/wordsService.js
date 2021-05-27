@@ -11,6 +11,11 @@ class WordsService {
     return words;
   }
 
+  async getById(id) {
+    const word = await this.WordModel.find({ id });
+    return word;
+  }
+
   async addWord(word) {
     const newWord = new this.WordModel(word);
     await newWord.save();
