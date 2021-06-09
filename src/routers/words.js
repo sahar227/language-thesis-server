@@ -8,11 +8,12 @@ const {
 
 const createWordsRouter = (routeAddress, wordService) => {
   const router = Express.Router();
-  router.get(`/${routeAddress}`, async (req, res) => {
+  router.get(`/${routeAddress}`, validateAdmin, async (req, res) => {
     const words = await wordService.getWords();
     return res.send(words);
   });
 
+  // TODO: add validation
   router.post(`/${routeAddress}`, validateAdmin, async (req, res) => {
     const word = req.body;
     const savedWord = await wordService.addWord(word);
