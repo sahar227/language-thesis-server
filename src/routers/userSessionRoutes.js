@@ -1,6 +1,7 @@
 const Express = require("express");
 const validateAdmin = require("../middleware/validateAdmin");
 const userSessionService = require("../services/userSessionService");
+const { wordsPhase1Service } = require("../services/wordsService");
 
 const router = Express.Router();
 
@@ -22,7 +23,9 @@ router.post("/", validateAdmin, async (req, res) => {
 router.get("/start-session/:id", async (req, res) => {
   const id = req.params.id;
   const session = await userSessionService.closeSession(id);
-  return res.send(session);
+  const wordsPhase1 = await wordsPhase1Service.getWords();
+
+  return res.send({ session, wordsPhase1 });
 });
 
 module.exports = router;
