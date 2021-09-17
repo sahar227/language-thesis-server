@@ -1,7 +1,7 @@
 const Joi = require("joi");
 const mongoose = require("mongoose");
 
-const dbSchema = new mongoose.Schema({
+const qusetionReport2BlcokSchema = new mongoose.Schema({
   word: {
     type: String,
     required: true,
@@ -28,6 +28,20 @@ const dbSchema = new mongoose.Schema({
   },
 });
 
-const reportPhase2Block = mongoose.model("reportPhase2Block", dbSchema);
+const report2BlcokSchema = new mongoose.Schema({
+  report: {
+    type: [qusetionReport2BlcokSchema],
+    required: true,
+  },
+  sessionId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+  },
+});
+
+const reportPhase2Block = mongoose.model(
+  "reportPhase2Block",
+  report2BlcokSchema
+);
 
 module.exports.reportPhase2Block = reportPhase2Block;

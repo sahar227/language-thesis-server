@@ -1,5 +1,6 @@
 const Express = require("express");
 const validateAdmin = require("../middleware/validateAdmin");
+const { createReportPhase1 } = require("../services/reportsService");
 
 const router = Express.Router();
 
@@ -15,8 +16,9 @@ router.delete("/:id", validateAdmin, async (req, res) => {
 });
 
 router.post("/", async (req, res) => {
-  const { id, report } = req.body;
-  // Save report for the id
+  const reportRequest = req.body;
+  const savedReport = await createReportPhase1(reportRequest);
+  return res.send(savedReport);
 });
 
 module.exports = router;
