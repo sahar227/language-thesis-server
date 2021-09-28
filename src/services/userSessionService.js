@@ -11,6 +11,12 @@ const createNewSession = async (session) => {
   return newSession;
 };
 
+const isSessionClosed = async (id) => {
+  const session = await userSession.findById(id);
+  if (!session) return true;
+  return session.isOpen;
+};
+
 const closeSession = async (id) => {
   const session = await userSession.findByIdAndUpdate(
     id,
@@ -24,4 +30,5 @@ module.exports = {
   getAllSessions,
   createNewSession,
   closeSession,
+  isSessionClosed,
 };
