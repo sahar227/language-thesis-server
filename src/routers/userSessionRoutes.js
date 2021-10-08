@@ -21,7 +21,8 @@ router.post("/", validateAdmin, async (req, res) => {
 
 router.get("/start-session/:id", async (req, res) => {
   const id = req.params.id;
-  if (userSessionService.isSessionClosed(id)) return res.sendStatus(404);
+  if (await userSessionService.isSessionClosed(id)) return res.sendStatus(404);
+
   const session = await userSessionService.closeSession(id);
   const wordsPhase1 = await wordsPhase1Service.getWords();
   const wordsPhase2 = await wordsPhase2Service.getWords();

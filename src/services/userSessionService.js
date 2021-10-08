@@ -14,7 +14,7 @@ const createNewSession = async (session) => {
 const isSessionClosed = async (id) => {
   const session = await userSession.findById(id);
   if (!session) return true;
-  return session.isOpen;
+  return !session.isOpen;
 };
 
 const closeSession = async (id) => {
