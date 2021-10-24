@@ -1,9 +1,14 @@
 const { reportPhase1 } = require("../models/reportPhase1");
 const { reportPhase2Block } = require("../models/reportPhase2Block");
+const { ObjectId } = require("mongodb");
 
 const getFinalReportForSession = async (sessionId) => {
-  const phase1 = await reportPhase1.findOne({ sessionId });
-  const phase2Blocks = await reportPhase2Block.find({ sessionId });
+  const mongooseId = ObjectId(sessionId);
+
+  const phase1 = await reportPhase1
+    .findOne({ sessionId: mongooseId })
+    .sort({ $natural: -1 });
+  const phase2Blocks = await reportPhase2Block.find({ sessionId: mongooseId });
   return {
     phase1,
     phase2Blocks,
