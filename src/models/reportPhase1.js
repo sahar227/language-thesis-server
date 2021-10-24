@@ -20,7 +20,7 @@ const questionReport1Schema = new mongoose.Schema({
   },
   userAnswer: {
     type: Boolean,
-    required: true,
+    required: false,
   },
   secondsToAnswer: {
     type: Number,
